@@ -21,7 +21,7 @@ class NegPearson(nn.Module):
             denominator = (T * sum_x2 - sum_x ** 2) * (T * sum_y2 - sum_y ** 2)
             for i in range(len(denominator)):
                 denominator[i] = max(denominator[i], 1e-6)
-            loss = 1 - ((T * sum_xy - sum_x * sum_y) / (torch.sqrt(denominator)) + 1e-6)
+            loss = 1 - ((T * sum_xy - sum_x * sum_y) / (torch.sqrt(denominator) + 1e-6))
             if self.reduction == "mean":
                 loss = loss.mean()
             elif self.reduction == "sum":
